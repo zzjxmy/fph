@@ -102,7 +102,6 @@ if(!function_exists('decrypt')){
 
 if(!function_exists('is_login')){
    function is_login(){
-       if(session('user'))return true;
        $uid = Request::input('uid');
        if($uid && Crypt::decrypt($uid)) return true;
        return false;

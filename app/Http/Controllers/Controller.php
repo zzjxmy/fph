@@ -105,4 +105,23 @@ class Controller extends BaseController
     protected function token(){
         return md5(config('app.tokenKey') . date('Ymd')) ;
     }
+
+    /**
+     * @return array
+     * 获取服务端验证码
+     * mihailong
+     */
+    protected function getMobileCode(){
+        $url = config('app.SmsUrl').'user/getSmsCode';
+        $data = [
+            'token' =>$this->params['token'],
+            'mobile'=>$this->params['mobile'],
+        ];
+        $result = json_decode(getApiJson($url,$data),true);
+        if($result && $result['code']=10000){
+            return $result['data'];
+        }else{
+            return [];
+        }
+    }
 }

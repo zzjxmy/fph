@@ -1,20 +1,18 @@
 <?php
-
 /**
  * Created by PhpStorm.
- * User: mihailong
- * Date: 16-12-12
- * Time: 下午3:38
+ * User: zhangzhijian
+ * Date: 2016/12/20
+ * Time: 14:58
  */
 
-namespace App\Http\Controllers\Api\Login;
+namespace App\Http\Controllers\Api\Register;
 
 use App\Model\Dao\UserDao;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class LoginController extends Controller
-{
+class RegisterController extends Controller{
     public $request,$user;
 
     public function __construct(Request $request,UserDao $userDao)
@@ -35,8 +33,13 @@ class LoginController extends Controller
         $mobileCode = in_array($this->params['code'],$codeArray);
         if(!$mobileCode)return $this->respondWithData(10003);
         //check user is already
+        $count = $this->user->where('mobile',$this->params['mobile'])->count();
+        if($count) return $this->respondWithData(20001);
         //if not exists saving
-        $result = $this->user->firstOrCreate(['mobile' => $this->params['mobile']]);
+        $result = $this->user->create(['mobile' => $this->params['mobile']]);
+        if(!$result) return $this->respondWithData(20002);
         return $this->respondWithData(200,['id' => encrypt($result->id) , 'mobile' => $result->mobile ]);
     }
+
+
 }
