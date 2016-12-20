@@ -17,4 +17,22 @@ class UserDao extends  BaseDao
 
     protected $primaryKey = 'id';
 
+    protected $fillable = ['mobile'];
+
+    /**
+     * 定义执行前的监听
+     * UserDao constructor.
+     * @param array $attributes
+     */
+    public function __construct(array $attributes = []){
+        parent::__construct($attributes);
+        self::saving(function(){
+           $this->add_time = time();
+        });
+
+        self::updating(function(){
+            $this->update_time = time();
+        });
+    }
+
 }

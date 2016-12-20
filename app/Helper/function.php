@@ -79,3 +79,32 @@ if(! function_exists('formatTime')){
     }
 
 }
+
+if(! function_exists('is_mobile')){
+    function is_mobile($mobile){
+        return preg_match('/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/',$mobile);
+    }
+}
+
+if(!function_exists('encrypt')){
+    function encrypt($str = ''){
+        if(empty($str))return false;
+        return Crypt::encrypt($str);
+    }
+}
+
+if(!function_exists('decrypt')){
+    function decrypt($str = ''){
+        if(empty($str))return false;
+        return Crypt::decrypt($str);
+    }
+}
+
+if(!function_exists('is_login')){
+   function is_login(){
+       if(session('user'))return true;
+       $uid = Request::input('uid');
+       if($uid && Crypt::decrypt($uid)) return true;
+       return false;
+   }
+}

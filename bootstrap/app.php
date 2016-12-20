@@ -68,6 +68,7 @@ $app->singleton(
 // ]);
 
 $app->middleware([
+    \Illuminate\Session\Middleware\StartSession::class,
     App\Http\Middleware\BeforeMiddleware::class,
 ]);
 
