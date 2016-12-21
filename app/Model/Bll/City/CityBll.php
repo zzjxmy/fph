@@ -31,6 +31,19 @@ class CityBll
         $cityList = $cityList ? $cityList->toarray():[];
         return $cityList;
     }
+    
+    /**
+     * 根据城市ID获取城市名字
+     * @param $cityId int 城市ID
+     * @return NULL|string
+     */
+    public function getCityNameByCityId($cityId){
+        $cityName = $this->cityDao->getOne(['id = ?',[$cityId]],['name']);
+        if($cityName){
+            return $cityName->name;
+        }
+        return '';
+    }
 
     /**
      * @param $id

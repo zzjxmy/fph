@@ -10,7 +10,8 @@
         "vlucas/phpdotenv": "~1.0",
         "jenssegers/mongodb": "^2.2",
         "illuminate/redis": "^5.1",
-        "predis/predis": "^1.0"
+        "predis/predis": "^1.0",
+        "pfinal/wechat": "^1.8"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0",

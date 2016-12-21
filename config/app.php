@@ -71,4 +71,8 @@ return [
     'SmsUrl'    => 'http://fphapi.fangpinhui.com/',
     'cipher'    => 'AES-256-CBC',
     'key' => env('APP_KEY'),
+    //头像列表
+    'avatarList' => [
+        
+    ]
 ];
