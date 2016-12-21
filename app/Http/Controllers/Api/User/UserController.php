@@ -66,8 +66,8 @@ class UserController extends Controller {
                 //check code
                 if(!in_array($this->request->input('code'),$this->getMobileCode())) return $this->respondWithData(10003);
                 //check mobile is exists
-                if(!is_mobile($mobile)) return $this->respondWithData(10003);
-                if($mobile == $userInfo->mobile) return $this->respondWithData(20004);
+                if(!is_mobile($mobile)) return $this->respondWithData(20009);
+                if($mobile == $userInfo->mobile) return $this->respondWithData(20005);
                 if(UserDao::where('mobile',$mobile)->count()) return $this->respondWithData(20001);
                 $userInfo->mobile = $mobile;
                 break;
