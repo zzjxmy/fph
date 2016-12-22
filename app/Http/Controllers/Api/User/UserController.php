@@ -31,11 +31,6 @@ class UserController extends Controller {
     {
         $this->request = $request;
         $this->cityBll = $cityBll;
-        //decrypt UID
-        $this->uid = $request->input('uid');
-        if(!$this->uid || !($this->uid = decrypt($this->uid))){
-            return $this->respondWithData(20003);
-        }
         parent::__construct($request);
     }
     
@@ -45,7 +40,9 @@ class UserController extends Controller {
      * @return $this
      */
     public function handle(){
-        //获取用户信息
+        //decrypt UID
+        if(!is_login())return $this->respondWithData(20003);
+        //get user info
         $userInfo = UserDao::where('id',$this->uid)->first(['id','nickname','mobile','headimgurl','sex','city_id','sign']);
         if(!$userInfo)return $this->respondWithData(20003);
         
@@ -92,6 +89,17 @@ class UserController extends Controller {
                     'avatarList' => config('app.avatarList') ,
                     'cityList' => $this->cityBll->getCitybByPid()
                 ]);
+                break;
+            case 'positionAndcardimgurl': //job and business card img url save
+                
+                $position = $this->request->input('position');
+                if(empty($position)) return $this->respondWithData(20006);
+                $userInfo->position = $position;
+                
+                $cardimgurl = $this->request->input('cardimgurl');
+                if(empty($cardimgurl)) return $this->respondWithData(20006);
+                $userInfo->cardimgurl = $cardimgurl;
+                
                 break;
             case 'default':
                 return $this->respondWithData(10001,['message' => 'type is not defined']);
