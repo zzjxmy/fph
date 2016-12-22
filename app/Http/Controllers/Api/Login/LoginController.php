@@ -37,6 +37,7 @@ class LoginController extends Controller
         //check user is already
         //if not exists saving
         $result = $this->user->firstOrCreate(['mobile' => $this->params['mobile']]);
+        if($result->status == 2) return $this->respondWithData(20010);
         return $this->respondWithData(200,['id' => encrypt($result->id) , 'mobile' => $result->mobile ]);
     }
 }

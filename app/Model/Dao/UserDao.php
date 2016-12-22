@@ -17,7 +17,7 @@ class UserDao extends  BaseDao
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['mobile'];
+    protected $fillable = ['mobile','nickname','openid','headimgurl','sex'];
 
     /**
      * 定义执行前的监听

@@ -3,10 +3,10 @@
 return array(
     
     //公众平台
-    'appId' => 'xxxxxxxxxxxxxxx',
-    'appSecret' => 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    'token' => 'xxxx',
-    'encodingAesKey' => 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+    'appId' => 'wx3ce1eceec205c6c4',
+    'appSecret' => '6a377f78c74e13ff5e4e425af7b11ecc',
+    'token' => '',
+    'encodingAesKey' => '',
     'middleUrl' => null,
     
     //微信支付
