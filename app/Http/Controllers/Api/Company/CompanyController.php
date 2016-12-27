@@ -15,13 +15,9 @@ namespace App\Http\Controllers\Api\Company;
 use App\Http\Controllers\Controller;
 use App\Model\Dao\CompanyDao;
 use App\Model\Dao\UserDao;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller {
-    public function __construct ( Request $request ) {
-        parent::__construct($request);
-    }
     
     public function handle(){
         if(!is_login())return $this->respondWithData(10000);
