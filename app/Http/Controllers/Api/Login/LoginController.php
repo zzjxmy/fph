@@ -31,9 +31,7 @@ class LoginController extends Controller
             'code'   => 'required|numeric',
         ]);
         if($v || !is_mobile($this->params['mobile'])) return $this->respondWithData(10002);
-        $codeArray = $this->getMobileCode();
-        $mobileCode = in_array($this->params['code'],$codeArray);
-        if(!$mobileCode)return $this->respondWithData(10003);
+        if(!in_array($this->params['code'],$this->getMobileCode()))return $this->respondWithData(10003);
         //check user is already
         //if not exists saving
         $result = $this->user->firstOrCreate(['mobile' => $this->params['mobile']]);

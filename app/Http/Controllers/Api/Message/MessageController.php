@@ -27,7 +27,7 @@ class MessageController extends Controller {
         //decrypt UID
         if(!is_login())return $this->respondWithData(20003);
         //get message
-        $list = $this->messageDao->paginate(15)->toArray();
+        $list = $this->messageDao->where('uid',decrypt($this->request->input('uid')))->paginate(15)->toArray();
         $list = $list['data'];
         foreach ($list as $key => $value){
             $list[$key]['add_time'] = date('Y-m-d H:i:s',$value['add_time']);

@@ -28,13 +28,15 @@ class VisitLogController extends Controller {
     public function handle(){
         //decrypt UID
         if(!is_login())return $this->respondWithData(20003);
-        //get visit log
-        $list = $this->visitLogDao->paginate(15)->toArray();
+        //get visit log where today
+        $list = $this->visitLogDao->where('id',decrypt($this->request->input('uid')))
+            ->where('add_time','>=',strtotime(date('Y-m-d')))
+            ->with(['user' => function($query) {
+                $query->select(['id','nickname','headimgurl']);
+            }])->with(['issue' => function($query){
+                $query->select(['id','title']);
+            }])->paginate(15)->toArray();
         $list = $list['data'];
-        foreach ($list as $key => $value){
-            $list[$key]['add_time'] = date('Y-m-d H:i:s',$value['add_time']);
-            $list[$key]['title'] = config('app.messageType')[$value['type']];
-        }
         return $this->respondWithData(200,$list);
     }
 }
