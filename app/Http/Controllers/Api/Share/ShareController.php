@@ -12,9 +12,19 @@
 namespace App\Http\Controllers\Api\Share;
 
 use App\Http\Controllers\Controller;
+use App\Model\Dao\IssueDao;
+use App\Model\Dao\UserDao;
 
 class ShareController extends Controller {
     public function handle(){
+        //get user info
+        $uid = (int)$this->request->query('uid');
+        if(!$uid) return $this->respondWithData(10001);
+        $user = UserDao::where('id',$uid)->where('status',1)->first(['nickname','headimgurl','sign']);
+        if(!$user )return $this->respondWithData(20003);
         
+        //get count
+        $count = IssueDao::where('uid',$uid)->count();
+        return $this->respondWithData(200,['user'=>$user,'count'=>$count]);
     }
 }

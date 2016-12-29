@@ -106,6 +106,7 @@ $app->register(App\Providers\AppServiceProvider::class);
 $app->configure('app');
 $app->configure('code');
 $app->configure('message');
+$app->configure('wechat');
 
 $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
     require __DIR__.'/../app/Http/routes.php';
