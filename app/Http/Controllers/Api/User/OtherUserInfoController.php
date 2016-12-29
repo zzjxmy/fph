@@ -30,7 +30,7 @@ class OtherUserInfoController extends Controller {
         }])->first(['id','nickname','headimgurl','sex','city_id','sign','company_id']);
         if(!$userInfo)return $this->respondWithData(20003);
         //get publish list
-        $publishList = IssueDao::where('uid',$uid)->with(['city' => function($query){
+        $publishList = IssueDao::where('uid',$uid)->where('check_status',2)->with(['city' => function($query){
             $query->select('id','name');
         }])->with(['issueInfo' => function($query){
             $query->select('iid','role','agency_type');
