@@ -25,7 +25,7 @@ class MessageController extends Controller {
     
     public function handle(){
         //decrypt UID
-        if(!is_login())return $this->respondWithData(20003);
+        if(!is_login())return $this->respondWithData(10000);
         //get message
         $list = $this->messageDao->where('uid',decrypt($this->request->input('uid')))->paginate(15)->toArray();
         $list = $list['data'];

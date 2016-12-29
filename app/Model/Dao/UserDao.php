@@ -34,5 +34,9 @@ class UserDao extends  BaseDao
             $this->update_time = time();
         });
     }
+    
+    public function city(){
+        return $this->hasOne('App\Model\Dao\CityDao','id','city_id');
+    }
 
 }

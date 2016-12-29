@@ -13,6 +13,7 @@ namespace App\Http\Controllers\Api\VisitLog;
 
 
 use App\Http\Controllers\Controller;
+use App\Model\Dao\UserDao;
 use App\Model\Dao\VisitLogDao;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class VisitLogController extends Controller {
     
     public function handle(){
         //decrypt UID
-        if(!is_login())return $this->respondWithData(20003);
+        if(!is_login())return $this->respondWithData(10000);
         //get visit log where today
         $list = $this->visitLogDao->where('id',decrypt($this->request->input('uid')))
             ->where('add_time','>=',strtotime(date('Y-m-d')))
@@ -37,6 +38,8 @@ class VisitLogController extends Controller {
                 $query->select(['id','title']);
             }])->paginate(15)->toArray();
         $list = $list['data'];
-        return $this->respondWithData(200,$list);
+        //get user is band mobile
+        $user = UserDao::where('id',decrypt($this->request->input('uid')))->first(['mobile']);
+        return $this->respondWithData(200,['list' => $list , 'isBandMobile' => $user->mobile?1:0]);
     }
 }

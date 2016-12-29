@@ -40,8 +40,14 @@ class WeChatController extends Controller {
                 if(!$user) return view('error.error',['message' => config('code.20011')]);
             }else{
                 if(!$user['status'] == 2) return view('error.error',['message'=>config('code.20010')]);
+                //if band mobile view user.index else user.bandMobile
+                return view($user->mobile?'user.index':'wechat.bandMobile',['uid' => encrypt($user->id)]);
             }
-            return view('wechat.setUsername',['uid' => encrypt($user->id)]);
+            return view('wechat.setUsername',[
+                'uid' => encrypt($user->id) ,
+                'nickname' => $userInfo['nickname'] ,
+                'headimgurl' => $userInfo['headimgurl']
+            ]);
         }
     }
 }

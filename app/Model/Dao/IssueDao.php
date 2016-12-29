@@ -18,4 +18,17 @@ class IssueDao extends  BaseDao
 
     protected $primaryKey = 'id';
     
+    
+    public function city(){
+        return $this->hasOne('App\Model\Dao\CityDao','id','city_id');
+    }
+    
+    public function issueInfo(){
+        return $this->hasOne('App\Model\Dao\IssueInfoDao','iid','id');
+    }
+    
+    public function img(){
+        return $this->hasOne('App\Model\Dao\ImagesDao','iid','id');
+    }
+    
 }

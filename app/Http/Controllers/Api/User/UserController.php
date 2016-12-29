@@ -99,7 +99,11 @@ class UserController extends Controller {
                 $cardimgurl = $this->request->input('cardimgurl');
                 if(empty($cardimgurl)) return $this->respondWithData(20006);
                 $userInfo->cardimgurl = $cardimgurl;
-                
+                break;
+            case 'nicknameAndHeadImg':
+                $userInfo->nickname = $this->request->input('nickname');
+                if(empty($nickname)) return $this->respondWithData(20006);
+                $userInfo->headimgurl = $this->request->input('headimgurl');
                 break;
             case 'default':
                 return $this->respondWithData(10001,['message' => 'type is not defined']);
