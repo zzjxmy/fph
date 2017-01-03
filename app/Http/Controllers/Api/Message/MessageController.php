@@ -1,7 +1,7 @@
 <?php
 /**
  * CopyRight © 2016
- * @desc 这里是控制器描述
+ * @desc 用户系统消息
  * @author   张志坚<137512638@qq.com>
  * @version  1.0(系统当前版本号)
  * @name:     MessageController.php（类名/函数名）
@@ -26,7 +26,7 @@ class MessageController extends Controller {
     public function handle(){
         //decrypt UID
         if(!is_login())return $this->respondWithData(10000);
-        //get message
+        //get message list page
         $list = $this->messageDao->where('uid',decrypt($this->request->input('uid')))->paginate(15)->toArray();
         $list = $list['data'];
         foreach ($list as $key => $value){

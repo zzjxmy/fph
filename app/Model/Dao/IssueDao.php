@@ -18,6 +18,16 @@ class IssueDao extends  BaseDao
 
     protected $primaryKey = 'id';
     
+    public function __construct ( array $attributes ) {
+        parent::__construct($attributes);
+        self::saving(function(){
+            $this->add_time = time();
+        });
+    
+        self::updating(function(){
+            $this->update_time = time();
+        });
+    }
     
     public function city(){
         return $this->hasOne('App\Model\Dao\CityDao','id','city_id');

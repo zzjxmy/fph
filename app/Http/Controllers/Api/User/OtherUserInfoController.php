@@ -1,7 +1,7 @@
 <?php
 /**
  * CopyRight © 2016
- * @desc 这里是控制器描述
+ * @desc 获取其他用户信息
  * @author   张志坚<137512638@qq.com>
  * @version  1.0(系统当前版本号)
  * @name:     OtherUserInfoController.php（类名/函数名）

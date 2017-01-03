@@ -1,7 +1,7 @@
 <?php
 /**
  * CopyRight © 2016
- * @desc 这里是控制器描述
+ * @desc 新闻操作（列表/详情）
  * @author   张志坚<137512638@qq.com>
  * @version  1.0(系统当前版本号)
  * @name:     NewController.php（类名/函数名）

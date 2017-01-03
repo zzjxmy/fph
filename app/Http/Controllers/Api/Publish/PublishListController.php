@@ -1,7 +1,7 @@
 <?php
 /**
  * CopyRight © 2016
- * @desc 这里是控制器描述
+ * @desc 获取用户的发布列表
  * @author   张志坚<137512638@qq.com>
  * @version  1.0(系统当前版本号)
  * @name:     OtherUserInfoController.php（类名/函数名）
@@ -19,7 +19,6 @@ class PublishListController extends Controller {
     public function handle(){
         //decrypt UID
         if(!is_login())return $this->respondWithData(20003);
-        //get other user info
         $uid = decrypt($this->request->input('uid'));
         $type = $this->request->input('type',1);
         if(!$type || !in_array($type,[1,2,3])) return $this->respondWithData(10002);
