@@ -17,4 +17,5 @@ class ImagesDao extends  BaseDao
 
     protected $primaryKey = 'id';
     
+    protected $fillable = ['iid','type','url'];
 }

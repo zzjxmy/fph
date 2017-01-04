@@ -18,7 +18,7 @@ class IssueDao extends  BaseDao
 
     protected $primaryKey = 'id';
     
-    public function __construct ( array $attributes ) {
+    public function __construct ( array $attributes = [] ) {
         parent::__construct($attributes);
         self::saving(function(){
             $this->add_time = time();

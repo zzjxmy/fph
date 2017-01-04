@@ -15,6 +15,5 @@ class IssueInfoDao extends  BaseDao
 
     protected $table = 'issue_info';
 
-    protected $primaryKey = 'id';
-    
+    protected $primaryKey = 'iid';
 }
